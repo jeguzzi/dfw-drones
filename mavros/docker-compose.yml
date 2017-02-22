@@ -1,0 +1,19 @@
+version: '2'
+services:
+  mavros:
+    image: jeguzzi/df:armhf-mavros-mocap
+    command: roslaunch mavros_external_tracker main.launch
+    volumes:
+      - ../logs:/root/.ros/log:rw
+      - ./main.launch:/root/catkin_ws/src/mavros_external_tracker/launch/main.launch
+      - ./apm_pluginlists.yaml:/root/catkin_ws/src/mavros_external_tracker/launch/apm_pluginlists.yaml
+    network_mode: host
+    env_file:
+      - ../ros.env
+  limiter:
+    image: jeguzzi/df:armhf-mavlink-limiter
+    command: roslaunch mavlink_limiter main.launch gcs_url:=/dev/ttyUSB0 ns:='rover_0' #ns:=${HOSTNAME}
+    volumes:
+      - ../logs:/root/.ros/log:rw
+    env_file:
+      - ../ros.env

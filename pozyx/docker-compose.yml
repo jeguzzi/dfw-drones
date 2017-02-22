@@ -1,0 +1,11 @@
+version: '2'
+services:
+  mavros:
+    image: jeguzzi/df:armhf-pozyx
+    command: roslaunch pozyx_ros_driver main.launch
+    volumes:
+      - ../logs:/root/.ros/log:rw
+      - ./main.yaml:/root/src/catkin_ws/pozyx_ros_driver/launch/main.yaml
+    network_mode: host
+    env_file:
+      - ../ros.env

@@ -1,0 +1,14 @@
+version: '2'
+services:
+  monitor:
+    image: jeguzzi/df:armhf-docker-ui
+    command: roslaunch docker_ui monitor.launch
+    privileged: true
+    volumes:
+      - ../logs:/root/.ros/log:rw
+      - /var/run/docker.sock:/var/run/docker.sock
+    network_mode: host
+    env_file:
+      - ../ros.env
+    environment:
+      - "ifaces=['wlan0']"
