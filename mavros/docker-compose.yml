@@ -13,6 +13,8 @@ services:
   limiter:
     image: jeguzzi/df:armhf-mavlink-limiter
     command: roslaunch mavlink_limiter main.launch gcs_url:=/dev/ttyUSB0 ns:='rover_0' #ns:=${HOSTNAME}
+    privileged: true
+    network_mode: host
     volumes:
       - ../logs:/root/.ros/log:rw
     env_file:

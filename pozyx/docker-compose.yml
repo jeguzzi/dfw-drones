@@ -1,8 +1,9 @@
 version: '2'
 services:
-  mavros:
+  pozyx:
     image: jeguzzi/df:armhf-pozyx
-    command: roslaunch pozyx_ros_driver main.launch
+    command: roslaunch pozyx_ros_driver main.launch pose:=rover_0/mavros/mocap/pose rate:=5 continous:=false
+    privileged: true
     volumes:
       - ../logs:/root/.ros/log:rw
       - ./main.yaml:/root/src/catkin_ws/pozyx_ros_driver/launch/main.yaml
