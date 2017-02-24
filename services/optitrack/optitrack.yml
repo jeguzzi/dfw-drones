@@ -1,0 +1,10 @@
+version: '2'
+services:
+  optitrack:
+    image: jeguzzi/df:armhf-mavros-mocap
+    command: rosrun topic_tools throttle "messages /optitrack/${RB} 10.0 /${HOSTNAME}/mavros/mocap/pose"
+    volumes:
+      - ../../logs:/root/.ros/log:rw
+    network_mode: host
+    environment:
+      - "RB=erlerover"

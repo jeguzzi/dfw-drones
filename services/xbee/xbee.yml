@@ -1,0 +1,9 @@
+version: '2'
+services:
+  xbee:
+    image: jeguzzi/df:armhf-mavlink-limiter
+    command: roslaunch mavlink_limiter main.launch gcs_url:=serial:///dev/ttyUSB0 ns:=${HOSTNAME}
+    privileged: true
+    network_mode: host
+    volumes:
+      - ../../logs:/root/.ros/log:rw
