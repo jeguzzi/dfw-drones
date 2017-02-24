@@ -2,7 +2,8 @@ version: '2'
 services:
   optitrack:
     image: jeguzzi/df:armhf-mavros-mocap
-    command: rosrun topic_tools throttle "messages /optitrack/erlerover 10.0 /rover_0/mavros/mocap/pose"
+    command: roslaunch mavros_external_tracker optitrack.launch ns:=rover_0
     volumes:
       - ../../logs:/root/.ros/log:rw
+      - ./main.launch:/root/catkin_ws/src/mavros_external_tracker/launch/optitrack.launch
     network_mode: host
