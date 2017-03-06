@@ -7,4 +7,5 @@ services:
          - ../../logs:/root/.ros/log:rw
          - ./main.launch:/root/catkin_ws/src/mavros_external_tracker/launch/main.launch
          - ./apm_pluginlists.yaml:/root/catkin_ws/src/mavros_external_tracker/launch/apm_pluginlists.yaml
+         - ./apm_config.yaml:/root/catkin_ws/src/mavros_external_tracker/launch/apm_config.yaml
        network_mode: host

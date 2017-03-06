@@ -16,7 +16,7 @@
             <arg name="tgt_system" value="1"/>
             <arg name="tgt_component" value="1"/>
             <arg name="log_output" value="log"/>
-            <arg name="config_yaml" value="$(find mavros)/launch/apm_config.yaml"/>
+            <arg name="config_yaml" value="$(find mavros_external_tracker)/launch/apm_config.yaml"/>
         </include>
         <node pkg="tf2_ros" type="static_transform_publisher" name="utm2map" args="493696.082822 5097005.38856 0 0 0 0.805928282249 -0.592013178799 utm map" output="log"/>
     </group>
