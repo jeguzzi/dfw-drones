@@ -1,11 +1,11 @@
 <launch>
     <arg name="ns" default="$(optenv HOSTNAME rover_0)"/>
-    <arg name="h_error" default="0.3"/>
+    <arg name="h_error" default="0.15"/>
     <arg name="gcs_url" default="udp://@"/>
     <group ns="$(arg ns)">
         <rosparam param="mavros/mocap" subst_value="true">
            publish_fix: false
-           utm_zone: 32N
+           utm_zone: 32T
            gps_id: 0
            h_error: $(arg h_error)
        </rosparam>
