@@ -1,0 +1,14 @@
+<launch>
+    <arg name="ns" default="$(optenv HOSTNAME rover_0)"/>
+    <arg name="gcs_url" default="udp://:14551@"/>
+    <arg name="config_file" default="$(find mavlink_limiter)/config/rates.yaml"/>
+    <group ns="$(arg ns)">
+        <node pkg="mavlink_limiter" type="mavlink_limiter.py" name="mavlink_limiter" output="log" clear_params='true'>
+            <rosparam param="rates" command="load" file="$(arg config_file)"/>
+        </node>
+        <node pkg="mavros" type="gcs_bridge" name="gcs_bridge" output="log" clear_params="true">
+            <param name="gcs_url" value="$(arg gcs_url)"/>
+            <remap from="mavlink/from" to="mavlink/from/filtered"/>
+        </node>
+    </group>
+</launch>
