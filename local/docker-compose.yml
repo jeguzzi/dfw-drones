@@ -18,3 +18,9 @@ services:
       service: xbee
     env_file:
       - ./ros.env
+  monitor:
+    extends:
+      file: ../services/monitor/monitor.yml
+      service: monitor
+    env_file:
+      - ./ros.env
