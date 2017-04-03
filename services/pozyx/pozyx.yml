@@ -7,5 +7,5 @@ services:
     network_mode: host
     volumes:
       - ../../logs:/root/.ros/log:rw
-      - ./main.yaml:/root/catkin_ws/pozyx_ros_driver/launch/main.yaml:ro
-      - ./main.launch:/root/catkin_ws/pozyx_ros_driver/launch/main.launch:ro
+      - ./main.yaml:/root/catkin_ws/src/pozyx_ros_driver/launch/main.yaml:ro
+      - ./main.launch:/root/catkin_ws/src/pozyx_ros_driver/launch/main.launch:ro
