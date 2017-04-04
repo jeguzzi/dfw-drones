@@ -2,7 +2,7 @@ version: '2'
 services:
   monitor:
     image: jeguzzi/df:armhf-docker-ui
-    command: roslaunch docker_ui monitor.launch video:=true video_stream:=/camera/image/compressed
+    command: roslaunch docker_ui monitor.launch video:=true video_stream:=/camera/image
     privileged: true
     volumes:
       - ../logs:/root/.ros/log:rw
