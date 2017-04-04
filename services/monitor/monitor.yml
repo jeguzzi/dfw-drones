@@ -2,11 +2,12 @@ version: '2'
 services:
   monitor:
     image: jeguzzi/df:armhf-docker-ui
-    command: roslaunch docker_ui monitor.launch video:=true video_stream:=/camera/image
+    command: roslaunch docker_ui monitor.launch video:=true
     privileged: true
     volumes:
       - ../logs:/root/.ros/log:rw
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./monitor.launch:/root/catkin_ws/src/docker_ui/launch/monitor.launch:ro
     network_mode: host
     environment:
       - "ifaces=['wlan0']"

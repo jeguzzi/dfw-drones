@@ -1,0 +1,32 @@
+<launch>
+    <arg name="video" default="false"/>
+    <arg name="video_stream" default="/camera/image"/>
+    <node pkg="diagnostic_common_diagnostics" type="tf_monitor.py" name="tf_monitor"/>
+
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"></include>
+    <arg name="name" default="www"/>
+    <arg name="port" default="8085"/>
+    <!-- avoid to use apache default port -->
+    <arg name="webpath" default="www"/>
+    <!-- relative path to the webroot. E.g. place this foloder in the ROS package root dir -->
+    <include file="$(find roswww)/launch/roswww.launch">
+        <arg name="name" value="$(arg name)"/>
+        <arg name="port" value="$(arg port)"/>
+        <arg name="webpath" value="$(arg webpath)"/>
+    </include>
+
+    <node pkg="docker_ui" type="docker_ui_node.py" name="docker_ui">
+        <rosparam param='ifaces' subst_value='True'>$(optenv ifaces ['wlan0', 'eth0'])</rosparam>
+    </node>
+
+    <group if="$(arg video)">
+        <node pkg="web_video_server" type="web_video_server" name="web_video_server">
+            <param name="quality" value="30"/>
+            <remap from="/camera/image_raw" to="$(arg video_stream)"/>
+        </node>
+        <!-- <node pkg="raspicam" type="raspicam_raw_node" name="raspicam_raw_node">
+            <param name="framerate" value="25"/>
+        </node> -->
+        <node pkg="rosservice" type="rosservice" name="start_camera" args='call /camera/start_capture "{}"'/>
+    </group>
+</launch>
