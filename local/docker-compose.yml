@@ -6,21 +6,25 @@ services:
       service: mavros
     env_file:
       - ./ros.env
+    restart: always
   pozyx:
     extends:
       file: ../services/pozyx/pozyx.yml
       service: pozyx
     env_file:
       - ./ros.env
+    restart: always
   xbee:
     extends:
       file: ../services/xbee/xbee.yml
       service: xbee
     env_file:
       - ./ros.env
+    restart: always
   monitor:
     extends:
       file: ../services/monitor/monitor.yml
       service: monitor
     env_file:
       - ./ros.env
+    restart: always
