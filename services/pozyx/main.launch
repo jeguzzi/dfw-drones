@@ -15,6 +15,7 @@
             <param name="orientation_stddev" value="0.001"/>
             <param name="debug" value="false"/>
             <param name="continuous" value="false"/>
-        </node>
+            <param name="max_error" value="1.0"/>
+       </node>
     </group>
 </launch>
