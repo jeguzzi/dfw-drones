@@ -5,6 +5,7 @@ services:
        command: roslaunch mavros_external_tracker main.launch
        volumes:
          - ../../logs:/root/.ros/log:rw
+         - /bags/:/bags/
          - ./main.launch:/root/catkin_ws/src/mavros_external_tracker/launch/main.launch
          - ./apm_pluginlists.yaml:/root/catkin_ws/src/mavros_external_tracker/launch/apm_pluginlists.yaml
          - ./apm_config.yaml:/root/catkin_ws/src/mavros_external_tracker/launch/apm_config.yaml
