@@ -44,11 +44,11 @@ cmd:
 # global_position
 global_position:
   frame_id: "utm"           # pose and fix frame_id
-  rot_covariance: 99999.0   # covariance for attitude?
+  rot_covariance: 0.01   # covariance for attitude?
   tf:
-    send: false               # send TF?
-    frame_id: "local_origin"  # TF frame_id
-    child_frame_id: "fcu_utm" # TF child_frame_id
+    send: true               # send TF?
+    frame_id: "utm"  # TF frame_id
+    # child_frame_id: "fcu_utm" # TF child_frame_id
 
 # imu_pub
 imu:
@@ -110,3 +110,14 @@ mission:
   pull_after_gcs: true  # update mission if gcs updates
 
 # --- mavros extras plugins (same order) ---
+distance_sensor:
+  trone:
+    subscriber: false
+    id: 0
+    orientation: ROLL_180
+    frame_id: fcu
+    field_of_view: 0.052
+rangefinder:
+  field_of_view: 0.052
+  min_range: 0.2
+  max_range: 40.0

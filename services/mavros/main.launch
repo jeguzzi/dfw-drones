@@ -9,6 +9,18 @@
            gps_id: 0
            h_error: $(arg h_error)
        </rosparam>
+ 
+
+<rosparam param="mavros/global_position/tf/child_frame_id" subst_value="true">
+     $(arg ns)/base_link
+  </rosparam>
+
+
+  <rosparam param="mavros/rangefinder/frame_id" subst_value="true">
+     $(arg ns)/range_finder
+  </rosparam>
+
+      <remap from="mavros/rangefinder/range" to="mavros/mocap/range"/>
         <include file="$(find mavros)/launch/node.launch">
             <arg name="pluginlists_yaml" value="$(find mavros_external_tracker)/launch/apm_pluginlists.yaml"/>
             <arg name="fcu_url" value="udp://:6001@"/>
@@ -19,5 +31,6 @@
             <arg name="config_yaml" value="$(find mavros_external_tracker)/launch/apm_config.yaml"/>
         </include>
         <node pkg="tf2_ros" type="static_transform_publisher" name="utm2map" args="493696.082822 5097005.38856 0 0 0 0.805928282249 -0.592013178799 utm map" output="log"/>
+	<node name='bag' pkg="rosbag" type="record" args='-o /bags/bag -j -a  -x "(.*)(camera|image)(.*)"'/>
     </group>
 </launch>
