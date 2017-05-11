@@ -36,15 +36,18 @@
          <param name="active" value="true"/>
          <param name="active_index" value="0"/>
          <rosparam param="in" subst_value="true">
-   -
-      topic: pozyx/pose
-      type: pose
-   -
-      topic: /optitrack/$(arg ns)
-      type: pose
-   -
-      topic: fix
-      type: fix
+            -
+               label: pozyx
+               topic: pose
+               type: pose
+            -
+               label: optitrack
+               topic: /optitrack/copter_0
+               type: pose
+            -
+               label: gps
+               topic: fix
+               type: fix
          </rosparam>
       </node>
    </group>
