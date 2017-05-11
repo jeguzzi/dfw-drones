@@ -38,7 +38,7 @@
          <rosparam param="in" subst_value="true">
             -
                label: pozyx
-               topic: pose
+               topic: pozyx/pose
                type: pose
             -
                label: optitrack

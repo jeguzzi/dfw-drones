@@ -1,8 +1,14 @@
 <launch>
     <arg name="ns" default="$(optenv HOSTNAME rover_0)"/>
+    <arg name="pose" default="pozyx/pose"/>
+    <arg name="continuous" default="true"/>
+    <arg name="enable_position" default="true"/>
+    <arg name="enable_sensors" default="false"/>
+    <arg name="rate" default="5.0"/>
+    <arg name="debug" default="false"/>
+    <arg name="max_error" default="2.0"/>
     <group ns="$(arg ns)">
-        <remap from="pose" to="pozyx/pose"/>
-        <node output="screen" pkg="pozyx_ros_driver" name="pozyx" type="pozyx.py" clear_params="true">
+        <node pkg="pozyx_ros_driver" name="pozyx" type="pozyx.py" clear_params="true" output="screen">
             <rosparam command="load" file="$(find pozyx_ros_driver)/launch/main.yaml"/>
             <param name="rate" value='10.0'/>
             <param name="enable_position" value="true"/>
