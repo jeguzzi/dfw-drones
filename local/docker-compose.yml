@@ -28,3 +28,10 @@ services:
     env_file:
       - ./ros.env
     restart: always
+  gps:
+    extends:
+      file: ../services/gps/gps.yml
+      service: gps_driver
+    env_file:
+      - ./ros.env
+    restart: always
