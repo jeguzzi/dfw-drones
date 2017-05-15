@@ -1,0 +1,10 @@
+version: '2'
+services:
+  gps_driver:
+     image: jeguzzi/df:armhf-gps
+     command: roslaunch launch/gps.launch
+     volumes:
+       - ../../logs:/root/.ros/log:rw
+       - ./gps.launch:/root/catkin_ws/launch/gps.launch
+     privileged: true
+     network_mode: host
