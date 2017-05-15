@@ -14,7 +14,7 @@
       <arg name="fix_mode" value="both"/>
       <arg name="dr_limit" value="0"/>
       <arg name="enable_beidou" value="false"/>
-      <arg name="enable_glonass" value="true"/>
+      <arg name="enable_glonass" value="false"/>
       <arg name="enable_ppp" value="false"/>
    </include>
 </launch>
