@@ -1,7 +1,7 @@
 <launch>
    <arg name="ns" default="$(optenv HOSTNAME rover_0)"/>
    <arg name="device" default="/dev/ttyS0"/>
-   <include file="$(find ublox_gps)/launch/ublox_launch.xml" ns="$(arg ns)">
+   <include file="$(find ublox_gps)/launch/ublox_gps.launch" ns="$(arg ns)">
       <arg name="device" value="$(arg device)"/>
       <arg name="rate" value="10"/>
       <arg name="ublox_version" value="8"/>
