@@ -1,0 +1,20 @@
+<launch>
+   <arg name="ns" default="$(optenv HOSTNAME rover_0)"/>
+   <arg name="device" default="/dev/ttyS0"/>
+   <include file="$(find ublox_gps)/launch/ublox_launch.xml" ns="$(arg ns)">
+      <arg name="device" value="$(arg device)"/>
+      <arg name="rate" value="10"/>
+      <arg name="ublox_version" value="8"/>
+      <arg name="baudrate" value="115200"/>
+      <arg name="gps" value="gps"/>
+      <arg name="frame_id" value="gps"/>
+      <arg name="output" value="screen"/>
+      <arg name="enable_sbas" value="true"/>
+      <arg name="dynamic_model" value="portable"/>
+      <arg name="fix_mode" value="both"/>
+      <arg name="dr_limit" value="0"/>
+      <arg name="enable_beidou" value="false"/>
+      <arg name="enable_glonass" value="true"/>
+      <arg name="enable_ppp" value="false"/>
+   </include>
+</launch>

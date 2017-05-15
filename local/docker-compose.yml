@@ -30,7 +30,7 @@ services:
     restart: always
   gps:
     extends:
-      file: ../services/gps/gps.yml
+      file: ../services/gps/gps-ublox.yml
       service: gps_driver
     env_file:
       - ./ros.env

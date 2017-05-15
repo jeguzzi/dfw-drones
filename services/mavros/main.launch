@@ -46,7 +46,7 @@
                type: pose
             -
                label: gps
-               topic: fix
+               topic: gps/fix
                type: fix
          </rosparam>
       </node>

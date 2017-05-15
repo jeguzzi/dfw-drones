@@ -2,8 +2,9 @@ version: '2'
 services:
   gps_driver:
      image: jeguzzi/df:armhf-gps
-     command: roslaunch ublox ublox_gps.launch baudrate:=38400 device:=/dev/ttyS0
+     command: roslaunch launch/gps-ublox.launch
      volumes:
        - ../../logs:/root/.ros/log:rw
+       - ./gps-ublox.launch:/root/catkin_ws/launch/gps-ublox.launch
      privileged: true
      network_mode: host

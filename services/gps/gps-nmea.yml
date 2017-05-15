@@ -5,6 +5,6 @@ services:
      command: roslaunch launch/gps.launch
      volumes:
        - ../../logs:/root/.ros/log:rw
-       - ./gps.launch:/root/catkin_ws/launch/gps.launch
+       - ./gps-nmea.launch:/root/catkin_ws/launch/gps-nmea.launch
      privileged: true
      network_mode: host
