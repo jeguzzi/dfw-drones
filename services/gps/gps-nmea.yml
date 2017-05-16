@@ -2,7 +2,7 @@ version: '2'
 services:
   gps_driver:
      image: jeguzzi/df:armhf-gps
-     command: roslaunch launch/gps.launch
+     command: roslaunch launch/gps-nmea.launch
      volumes:
        - ../../logs:/root/.ros/log:rw
        - ./gps-nmea.launch:/root/catkin_ws/launch/gps-nmea.launch

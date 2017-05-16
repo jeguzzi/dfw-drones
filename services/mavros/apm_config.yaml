@@ -130,6 +130,6 @@ mocap:
    include_altitude: false
    include_gps_altitude: false
    range_enable: true
-   range_necessary: true
+   range_necessary: false
    range_timeout: 0.5
    range_maximum: 3.75
