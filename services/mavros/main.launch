@@ -5,6 +5,7 @@
    <group ns="$(arg ns)">
       <rosparam param="mavros/mocap" subst_value="true">
          h_error: $(arg h_error)
+         dop_factor: $(eval 10.0 if 'rover' in arg('ns') else 1.0)
       </rosparam>
 
       <rosparam param="mavros/global_position/tf/child_frame_id" subst_value="true">
