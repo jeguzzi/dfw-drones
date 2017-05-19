@@ -2,10 +2,11 @@
    <arg name="ns" default="$(optenv HOSTNAME rover_0)"/>
    <arg name="h_error" default="0.3"/>
    <arg name="gcs_url" default="udp://@"/>
+   <arg name="dop_factor" default="$(eval 10.0 if 'rover' in arg('ns') else 1.0)"/>
    <group ns="$(arg ns)">
       <rosparam param="mavros/mocap" subst_value="true">
          h_error: $(arg h_error)
-         dop_factor: $(eval 10.0 if 'rover' in arg('ns') else 1.0)
+         dop_factor: $(arg dop_factor)
       </rosparam>
 
       <rosparam param="mavros/global_position/tf/child_frame_id" subst_value="true">
