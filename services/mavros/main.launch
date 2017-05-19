@@ -43,7 +43,7 @@
                type: pose
             -
                label: optitrack
-               topic: /optitrack/copter_0
+               topic: /optitrack/$(arg ns)
                type: pose
             -
                label: gps
