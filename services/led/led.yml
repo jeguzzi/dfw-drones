@@ -1,8 +1,8 @@
 version: '2'
 services:
   led:
-     image: jeguzzi/df:armhf-gps
-     command: roslaunch launch/gps-ublox.launch
+     image: jeguzzi/df:armhf-led
+     command: roslaunch lawa lawa.launch
      volumes:
        - ../../logs:/root/.ros/log:rw
        - ./lawa-drone.py.launch:/root/catkin_ws/lawa/script/lawa-drone.py:ro
