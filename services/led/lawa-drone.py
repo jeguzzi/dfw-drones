@@ -12,7 +12,7 @@ def battery(msg, bs):
     red = 255 * (1 - p)
     green = 255 * p
     if p > 0.2:
-        bs.set_color(red=red, green=green, blue=0, index=4)
+        bs.set_color(red=red, green=green, blue=0, index=3)
     else:
         bs.pulse(name='red', index=3, repeats=10, duration=500)
         bs.set_color(name='red', index=0)
