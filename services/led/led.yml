@@ -1,6 +1,6 @@
 version: '2'
 services:
-  gps_driver:
+  led:
      image: jeguzzi/df:armhf-gps
      command: roslaunch launch/gps-ublox.launch
      volumes:
