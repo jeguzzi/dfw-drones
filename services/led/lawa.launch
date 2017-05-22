@@ -2,7 +2,7 @@
    <arg name="ns" default="$(optenv HOSTNAME rover_0)"/>
    <node pkg="lawa" type="lawa-drone.py" name="blinkstick" required="True" output="screen" ns="$(arg ns)">
       <param name="leds" value="8"/>
-      <param name="max_intensity" value="100"/>
+      <param name="max_intensity" value="60"/>
       <param name="ns" value="$(arg ns)"/>
    </node>
 </launch>
