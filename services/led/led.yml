@@ -5,7 +5,7 @@ services:
      command: roslaunch lawa lawa.launch
      volumes:
        - ../../logs:/root/.ros/log:rw
-       - ./lawa-drone.py:/root/catkin_ws/lawa/scripts/lawa-drone.py:ro
-       - ./lawa.launch:/root/catkin_ws/lawa/launch/lawa.launch:ro
+       - ./lawa-drone.py:/root/catkin_ws/src/lawa/scripts/lawa-drone.py:ro
+       - ./lawa.launch:/root/catkin_ws/src/lawa/launch/lawa.launch:ro
      privileged: true
      network_mode: host
