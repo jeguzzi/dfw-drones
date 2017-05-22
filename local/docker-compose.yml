@@ -35,3 +35,9 @@ services:
     env_file:
       - ./ros.env
     restart: always
+  led:
+    extends:
+      file: ../services/led/led.yml
+      service: led
+    env_file:
+      - ./ros.env

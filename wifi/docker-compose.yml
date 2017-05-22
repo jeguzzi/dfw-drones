@@ -24,3 +24,9 @@ services:
       service: gps_driver
     env_file:
       - ./ros.env
+  led:
+    extends:
+      file: ../services/led/led.yml
+      service: led
+    env_file:
+      - ./ros.env
