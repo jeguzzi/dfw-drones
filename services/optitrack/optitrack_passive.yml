@@ -1,0 +1,9 @@
+version: '2'
+services:
+  optitrack:
+    image: jeguzzi/df:armhf-mavros-mocap
+    command: roslaunch mavros_external_tracker optitrack.launch
+    volumes:
+      - ../../logs:/root/.ros/log:rw
+      - ./main_passive.launch:/root/catkin_ws/src/mavros_external_tracker/launch/optitrack.launch
+    network_mode: host
