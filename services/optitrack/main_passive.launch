@@ -1,0 +1,9 @@
+<launch>
+  <arg name="rigid_body" default="$(optenv HOSTNAME rover_0)"/>
+  <arg name="ns" default="$(optenv HOSTNAME rover_0)"/>
+  <arg name="rate" default="10.0"/>
+  <group ns="$(arg ns)">
+    <!--node pkg="topic_tools" type="throttle" name="throttle_pose" args="messages /optitrack/$(arg rigid_body) $(arg rate) mavros/mocap/pose"/> -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="map2world" args="5.367 4.67 0 1.5708 0 0 map World" />
+  </group>
+</launch>
