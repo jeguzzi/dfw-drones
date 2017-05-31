@@ -1,0 +1,10 @@
+<launch>
+   <arg name="ns" default="$(optenv HOSTNAME rover_0)"/>
+   <arg name="config_all" default="false"/>
+   <group ns="$(arg ns)">
+      <node pkg="pozyx_ros_driver" type="uwb_configurator_ros.py" name="configure" output="screen">
+         <param name="config_all" value="$(arg config_all)"/>
+         <rosparam command="load" file="$(find pozyx_ros_driver)/launch/uwb.yaml"/>
+      </node>
+   </group>
+</launch>
