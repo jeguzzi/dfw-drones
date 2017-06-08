@@ -1,0 +1,6 @@
+uwb:
+   channel: 2
+   bitrate: 0x02 # 6.8 Mbit/s
+   prf: 0x02 # 64 Mhz
+   plen: 0x04 # 64 bits
+   gain_db: 32.0

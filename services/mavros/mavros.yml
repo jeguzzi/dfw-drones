@@ -10,3 +10,23 @@ services:
          - ./apm_pluginlists.yaml:/root/catkin_ws/src/mavros_external_tracker/launch/apm_pluginlists.yaml
          - ./apm_config.yaml:/root/catkin_ws/src/mavros_external_tracker/launch/apm_config.yaml
        network_mode: host
+   mavros-lodrino:
+       image: jeguzzi/df:armhf-mavros-mocap
+       command: roslaunch mavros_external_tracker main.launch
+       volumes:
+         - ../../logs:/root/.ros/log:rw
+         - /bags/:/bags/
+         - ./main-lodrino.launch:/root/catkin_ws/src/mavros_external_tracker/launch/main.launch
+         - ./apm_pluginlists.yaml:/root/catkin_ws/src/mavros_external_tracker/launch/apm_pluginlists.yaml
+         - ./apm_config_outdoor.yaml:/root/catkin_ws/src/mavros_external_tracker/launch/apm_config.yaml
+       network_mode: host
+   mavros-lodrino-tdma:
+       image: jeguzzi/df:armhf-mavros-mocap
+       command: roslaunch mavros_external_tracker main.launch
+       volumes:
+         - ../../logs:/root/.ros/log:rw
+         - /bags/:/bags/
+         - ./main-lodrino-tdma.launch:/root/catkin_ws/src/mavros_external_tracker/launch/main.launch
+         - ./apm_pluginlists.yaml:/root/catkin_ws/src/mavros_external_tracker/launch/apm_pluginlists.yaml
+         - ./apm_config_outdoor.yaml:/root/catkin_ws/src/mavros_external_tracker/launch/apm_config.yaml
+       network_mode: host

@@ -20,3 +20,23 @@ services:
       - ./configure.launch:/root/catkin_ws/src/pozyx_ros_driver/launch/configure.launch:ro
     env_file:
       - ../../ros.env
+  pozyx-lodrino:
+    image: jeguzzi/df:armhf-pozyx
+    command: roslaunch pozyx_ros_driver main.launch rate:=5 continuous:=false
+    privileged: true
+    network_mode: host
+    volumes:
+      - ../../logs:/root/.ros/log:rw
+      - ./main-lodrino.yaml:/root/catkin_ws/src/pozyx_ros_driver/launch/main.yaml:ro
+      - ./main.launch:/root/catkin_ws/src/pozyx_ros_driver/launch/main.launch:ro
+  configure-lodrino:
+    image: jeguzzi/df:armhf-pozyx
+    command: roslaunch pozyx_ros_driver configure.launch
+    privileged: true
+    network_mode: host
+    volumes:
+      - ../../logs:/root/.ros/log:rw
+      - ./uwb-lodrino.yaml:/root/catkin_ws/src/pozyx_ros_driver/launch/uwb.yaml:ro
+      - ./configure.launch:/root/catkin_ws/src/pozyx_ros_driver/launch/configure.launch:ro
+    env_file:
+      - ../../ros.env

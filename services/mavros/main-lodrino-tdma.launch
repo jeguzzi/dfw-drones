@@ -1,0 +1,57 @@
+<launch>
+   <arg name="ns" default="$(optenv HOSTNAME rover_0)"/>
+   <arg name="h_error" default="0.3"/>
+   <arg name="gcs_url" default="udp://@"/>
+   <arg name="dop_factor" default="$(eval 10.0 if 'rover' in arg('ns') else 1.0)"/>
+   <group ns="$(arg ns)">
+      <rosparam param="mavros/mocap" subst_value="true">
+         h_error: $(arg h_error)
+         dop_factor: $(arg dop_factor)
+      </rosparam>
+
+      <rosparam param="mavros/global_position/tf/child_frame_id" subst_value="true">
+         $(arg ns)/base_link
+      </rosparam>
+
+      <rosparam param="mavros/rangefinder/frame_id" subst_value="true">
+         $(arg ns)/range_finder
+      </rosparam>
+
+      <remap from="mavros/rangefinder/range" to="mavros/mocap/range"/>
+      <include file="$(find mavros)/launch/node.launch">
+         <arg name="pluginlists_yaml" value="$(find mavros_external_tracker)/launch/apm_pluginlists.yaml"/>
+         <arg name="fcu_url" value="udp://:6001@"/>
+         <arg name="gcs_url" value="$(arg gcs_url)"/>
+         <arg name="tgt_system" value="1"/>
+         <arg name="tgt_component" value="1"/>
+         <arg name="log_output" value="screen"/>
+         <arg name="config_yaml" value="$(find mavros_external_tracker)/launch/apm_config.yaml"/>
+      </include>
+
+      <node pkg="tf2_ros" type="static_transform_publisher" name="utm2map" args="499433.2 5127031.6 0 0 0 0 utm map_n" output="screen"/>
+      <node pkg="tf2_ros" type="static_transform_publisher" name="utm2map" args="22.65 6.94 0 3.483 0 0 map_n map" output="screen"/>
+
+      <node name='bag' pkg="rosbag" type="record" args='-o /bags/bag -j -a  -x "(.*)(camera|image)(.*)"'/>
+
+      <node name='localization' pkg='mavros_external_tracker' type='localization.py' output="screen">
+         <param name="timeout" value="1.0"/>
+         <param name="max_rate" value="15.0"/>
+         <param name="active" value="true"/>
+         <param name="active_index" value="0"/>
+         <rosparam param="in" subst_value="true">
+            -
+               label: pozyx
+               topic: pozyx/pose
+               type: pose
+            -
+               label: optitrack
+               topic: /optitrack/$(arg ns)
+               type: pose
+            -
+               label: gps
+               topic: gps/fix
+               type: fix
+         </rosparam>
+      </node>
+   </group>
+</launch>

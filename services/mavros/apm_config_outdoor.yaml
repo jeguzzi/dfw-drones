@@ -132,5 +132,5 @@ mocap:
    range_enable: true
    range_necessary: false
    range_timeout: 0.5
-   range_maximum: 3.75
+   range_maximum: 14.0
    range_mimimum: 0.19

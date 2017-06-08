@@ -1,0 +1,26 @@
+version: '2'
+services:
+  mavros:
+    extends:
+      file: ../services/mavros/mavros.yml
+      service: mavros-lodrino
+    env_file:
+      - ./ros.env
+  pozyx:
+    extends:
+      file: ../services/pozyx/pozyx-lodrino.yml
+      service: pozyx-lodrino
+    env_file:
+      - ./ros.env
+  gps:
+    extends:
+      file: ../services/gps/gps-ublox.yml
+      service: gps_driver
+    env_file:
+      - ./ros.env
+  # led:
+  #   extends:
+  #     file: ../services/led/led.yml
+  #     service: led
+  #   env_file:
+  #     - ./ros.env
